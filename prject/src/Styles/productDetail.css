@@ -1,0 +1,61 @@
+.ui.grid.container>.ui.grid>.four.wide.column>.ui.small.image>img{
+  border-radius: 20px;
+  border-color: black;
+  border-width: 1px;
+}
+
+
+.ui.grid.container>.ui.grid>.nine.wide.column>p>.meta.price{
+  color: black;
+  font-weight: 500;
+  
+}
+
+.ui.grid.container>.ui.grid>.nine.wide.column>p>.meta{
+ font-size: 25x;
+}
+
+
+.ui.grid.container>.ui.grid{
+  margin-top: 20px;
+  align-items: center;
+  margin-left: 50px;
+  justify-content: space-between;
+  width:100%;
+
+  
+
+}
+
+.ui.grid>.ui.reply.form{
+  width: 80%;
+  padding: 20px;
+  
+}
+
+
+.ui.grid.container>.ui.grid>.nine.wide.column{
+
+  display: inline;
+  padding-left: 10px;
+ 
+
+  
+}
+.ui.grid.container>.ui.grid>.nine.wide.column>p>.titleDetails{
+  font-size: 20px;
+  font-weight: 100;
+  margin-right: 10px;
+
+
+}
+
+
+.ui.grid.container>.ui.grid>.card.column>img{
+  padding-right: 10px;
+
+}
+
+.ui.grid > .column {
+  background-color: aliceblue; 
+}
