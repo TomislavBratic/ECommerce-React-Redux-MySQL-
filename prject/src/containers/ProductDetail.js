@@ -1,85 +1,85 @@
 import React, { useEffect } from "react";
-import { selectedProduct } from "../redux/actions/productActions";
+import { getProduct } from "../redux/actions/productActions";
 import { useSelector,useDispatch } from "react-redux";
-import axios from "axios";
 import { useParams } from "react-router-dom";
+import { insertCart } from "../redux/actions/cartActions";
+import { styled } from '@mui/material/styles';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import ButtonBase from '@mui/material/ButtonBase';
 
-import "../Styles/productDetail.css";
+
 
 
 const ProductDetail=()=>{
 
     const { productId } = useParams();
-    const product = useSelector((state) => state.product);
-    const { image, title, price, category, description } = product;
+    const product = useSelector((state) => (state.product));
     const dispatch=useDispatch();
-    console.log(productId);
-
-    const fetchProduct=async()=>{
-       const response=await axios.get(`https://fakestoreapi.com/products/${productId}`)
-       .catch((err)=>{
-        console.log(err)
-       });
-    dispatch(selectedProduct(response.data));
-    }
-
    
     useEffect(() => {
-      if (productId ) fetchProduct(productId);
-    }, [productId]);
+    dispatch(getProduct(productId));
+    }, [dispatch,productId]);
 
-return(
-    <div className="ui grid container">
-      {Object.keys(product).length===0 ?(
-        <div>...loading</div>
-      ) : (
+    const Img = styled('img')({
+      margin: 'auto',
+      display: 'block',
+      maxWidth: '100%',
+      maxHeight: '100%',
+    });
 
     
-    <div className="ui grid">
-      
-        <div className="four wide column">
-          <div className="ui  bordered small image">
-      
-         <img x="0" y="0" width="100%" height="100%" src={image} alt={title}></img>
+    return (
 
-          </div>
-        </div>
+      !product[0]? <div>Loading</div> : (
+      <Paper
+        sx={{
+          p: 3,
+          margin: '10px 50px',
+          maxWidth: 750,
+          flexGrow: 2,
+          backgroundColor: (theme) =>
+            theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+        }}
+      >
+        <Grid container spacing={2}>
+          <Grid item>
+            <ButtonBase sx={{ width: 200, height: 200 }}>
+            <Img src={`data:image/bin;base64,${btoa(String.fromCharCode(...new Uint8Array(product[0].image.data)))}`} alt=""/>
+            </ButtonBase>
+          </Grid>
+          <Grid item xs={12} sm container>
+            <Grid item xs container direction="column" spacing={2}>
+              <Grid item xs>
+                <Typography gutterBottom variant="subtitle1" component="div">
+                  {product[0].title}
+                </Typography>
+                <Typography variant="body2" gutterBottom>
+            
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                {product[0].category}
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Button sx={{ cursor: 'pointer' }} color="inherit" onClick={() => dispatch(insertCart(product[0]))} >
+                 Add To Cart
+                </Button>
+              </Grid>
+            </Grid>
+            <Grid item>
+              <Typography variant="subtitle1" component="div">
+              ${product[0].price}
+              </Typography>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Paper>
+    )
+    );
 
-        <div className="nine wide column">
-          <p>
-          <div className="titleDetails">{title}</div>
-          <div className="meta price">$ {price}</div>
-          <div className="meta">{category}</div>
-          </p>
-        </div>
-        <div className="three wide column">
-          <p>
-          <div class="ui vertical animated button" tabindex="0">
-          <div class="hidden content">Cart</div>
-          <div class="visible content">
-          <i class="shop icon"></i>
-          </div>
-</div>
-          </p>
-
-          </div>     
-        
-
-
-          <form class="ui reply form">
-            <div class="field">
-              <textarea ></textarea>
-           </div>
-                <div class="ui primary submit labeled icon button">
-                  <i class="icon edit"></i> Add Reply
-               </div>
-          </form>
-        
-     </div>
-)};
-</div>
-
-)
 
 };
 

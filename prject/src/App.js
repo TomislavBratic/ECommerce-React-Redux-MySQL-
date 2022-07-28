@@ -7,26 +7,28 @@ import ProductDetail from './containers/ProductDetail.js';
 import ProductComponent from './containers/ProductComponent.js';
 import Cart from './containers/Cart.js';
 import About from './containers/About.js';
+import CartListing from './containers/CartListing.js';
+import Button from '@mui/material/Button';
 
 
 function App() {
   return (
-   <div className='App'>
+   
     <Router>
-<Header/>
+      <Header/>
   <Routes>
     <Route path="/" element={<ProductListing/>}></Route>
     <Route path="/product/:productId" element={<ProductDetail/>}></Route>
     <Route path="/" element={<ProductComponent/>}></Route>
-    <Route path="/cart" element={<Cart/>}></Route>
     <Route path="/about" element={<About/>}></Route>
+    <Route path="/cart" element={<CartListing/>}></Route>
   </Routes>
 
 
     </Router>
 
 
-   </div>
+   
   );
 }
 

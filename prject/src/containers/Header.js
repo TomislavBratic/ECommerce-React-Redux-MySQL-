@@ -1,32 +1,40 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Cart from "./Cart.js";
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import { Link } from 'react-router-dom';
+import useStyles from '../Styles/headerStyles.js';
 
 
+export const Header=()=> {
+    const classes=useStyles();
+  return (
+    <AppBar className={classes.appBar} position="static" color="inherit">
+    <div className={classes.brandContainer}>
+   
 
-const Header=()=>{
-    return(
+    <Typography component={Link} to="/" className={classes.heading} variant="h5" align="center">FakeShop&nbsp;</Typography>
+   
+      
 
-<div className="ui fixed menu">
-        <div className="ui container center">
-        <a href="/">   
-        <h2>FakeShop</h2>
-        </a>
-        <div className="menu">
-            <a href="/cart">
-            <h3>Cart</h3>
-          </a>
-          <a href="/about">
-            <h3>About</h3>
-        </a>
-                 
+     
+    </div>
+    <Toolbar className={classes.toolbar}>
+      
+        <div className={classes.profile}>
+        
+          <Typography component={Link} to="/cart" className={classes.links} variant="h6">Cart</Typography>
+          <Typography component={Link} to="/about" className={classes.links} variant="h6">About</Typography>
+          
         </div>
-        </div>
-</div>
-
-
-    )
-};
-
+     
+       
+    </Toolbar>
+  </AppBar>
+  );
+}
 
 export default Header;

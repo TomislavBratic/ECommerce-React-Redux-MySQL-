@@ -1,33 +1,35 @@
 import React,{useEffect} from "react";
-import { useDispatch } from "react-redux";
-import ProductComponent from "./ProductComponent.js";
-import {setProducts} from "../redux/actions/productActions.js";
-import axios from "axios";
+import { useDispatch,useSelector } from "react-redux";
+import { Grid, CircularProgress } from '@material-ui/core';
+import useStyles from "../Styles/cart&ProductListStyles.js";
+import { getProducts } from "../redux/actions/productActions";
+import ProductComponent from "./ProductComponent";
 
 
 
-const ProductListing=()=>{
+
+const CartListing=()=>{
+    const classes=useStyles();
+    const products = useSelector((state) => state.allProducts.products);
+    const dispatch = useDispatch();
     
-    const dispatch=useDispatch();
-
-
-
-    const  fetchProducts=async()=>{
-        const response=await axios.get('https://fakestoreapi.com/products')
-       .catch((err)=>{
-        console.log(err)
-       });
-       dispatch(setProducts(response.data));
-    };
-
-    useEffect(()=>{fetchProducts()}, []);
-return(
-<div className="ui grid container">
-    <h1><ProductComponent/></h1>
-</div>
-
-);
+    useEffect(() => {
+      dispatch(getProducts());
+    }, [dispatch]);
+    
+  
+    return (
+        !products.length ? <CircularProgress /> : (
+          <Grid className={classes.container} container alignItems="stretch" spacing={3}>
+            {products.map((product) => (
+              <Grid  item xs={12} sm={6} md={6}>
+                <ProductComponent product={product} s />
+              </Grid>
+            ))}
+          </Grid>
+        )
+      );
 
 };
 
-export default ProductListing;
+export default CartListing;

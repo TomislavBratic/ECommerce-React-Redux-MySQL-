@@ -1,10 +1,10 @@
 import { ActionTypes } from "../constants/action-types";
 
-const initialState={
-    products:[],
-};
+const intialState = {
+    products: [],
+  };
 
-export const productReducer=(state=initialState,{type,payload})=>{
+export const productReducer=(state = intialState,{type,payload})=>{
 
     switch (type) {
         case ActionTypes.SET_PRODUCTS:
@@ -16,17 +16,31 @@ export const productReducer=(state=initialState,{type,payload})=>{
     }
 };
 
-    export const selectedProductReducer=(state={},{type,payload})=>{
+    export const selectedProductReducer=(state=[],{type,payload})=>{
        
         switch (type) {
-            case ActionTypes.SELECTED_PRODUCT:
+            case ActionTypes.GET_PRODUCT:
                 
                 return {...state,...payload};
         
             default:
                 return state;
-        }
-    
+        }   
 
 };
+
+export const deleteProductReducer=(state=[],{type,payload})=>{
+       
+    switch (type) {
+        case ActionTypes.REMOVE_SELECTED_PRODUCT:
+            
+            return state.filter((product) => product.id !== payload);
+    
+        default:
+            return state;
+    }   
+
+};
+
+
 
