@@ -16,12 +16,13 @@ import ButtonBase from '@mui/material/ButtonBase';
 const ProductDetail=()=>{
 
     const { productId } = useParams();
-    const product = useSelector((state) => (state.product));
+    const product = useSelector((state) => (state.allProducts.posts));
     const dispatch=useDispatch();
    
     useEffect(() => {
     dispatch(getProduct(productId));
     }, [dispatch,productId]);
+    console.log(product)
 
     const Img = styled('img')({
       margin: 'auto',

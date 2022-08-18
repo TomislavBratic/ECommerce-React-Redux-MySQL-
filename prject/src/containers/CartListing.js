@@ -1,7 +1,8 @@
 import React,{useEffect,useState} from "react";
 import { useDispatch,useSelector } from "react-redux";
 import { getCart,deleteCart } from "../redux/actions/cartActions";
-import { Grid, CircularProgress } from '@material-ui/core';
+import Grid from '@mui/material/Grid';
+import CircularProgress from '@mui/material/CircularProgress';
 import Cart from "./Cart.js";
 import useStyles from "../Styles/cart&ProductListStyles.js";
 
@@ -10,21 +11,21 @@ import useStyles from "../Styles/cart&ProductListStyles.js";
 
 const CartListing=()=>{
     const classes=useStyles();
-    const products = useSelector((state) => state.allProducts.products);
+    const products = useSelector((state) => state.allProducts);
     const dispatch = useDispatch();
-    const [requestData, setRequestData] = useState(new Date());
+    
 
     useEffect(() => {
       dispatch(getCart());
-    }, [dispatch,requestData]);
-    console.log("je")
+    }, [dispatch]);
+    console.log(products);
   
     return (
-        !products.length ? <CircularProgress /> : (
+        !products ? <CircularProgress /> : (
           <Grid className={classes.container} container alignItems="stretch" spacing={4}>
-            {products.map((product) => (
+            {products.posts.map((product) => (
               <Grid  item xs={12} sm={10} md={10}>
-                <Cart product={product} setRequestData={setRequestData} />
+                <Cart product={product} />
               </Grid>
             ))}
           </Grid>

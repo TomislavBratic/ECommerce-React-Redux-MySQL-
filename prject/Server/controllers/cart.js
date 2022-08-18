@@ -24,9 +24,6 @@ import {connection} from "../dbService.js";
 
         try {
             const { title,image,price,category } = req.body;
-
-            
-            
             const products = await new Promise((resolve, reject) => {
                 const query = "INSERT INTO `cart` (`title`,`image`, `price`) VALUES ('"+title+"','"+ image+"','"+ price+"')";
 
@@ -35,14 +32,13 @@ import {connection} from "../dbService.js";
                     resolve(results);
                 })
             });
-            
             res.status(200).json(products);
         } catch (error) {
             console.log(error);
         }
     }
 
-
+    
     export const deleteCart=async(req,res)=>{
         
         const { id } = req.params;

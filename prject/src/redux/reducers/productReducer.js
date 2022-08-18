@@ -1,13 +1,13 @@
-import { ActionTypes } from "../constants/action-types";
+/*import { SET_PRODUCTS,GET_PRODUCT,REMOVE_SELECTED_PRODUCT } from "../constants/action-types.js";
 
-const intialState = {
+const initialState = {
     products: [],
   };
 
-export const productReducer=(state = intialState,{type,payload})=>{
+export const productReducer=(state = initialState,{type,payload})=>{
 
     switch (type) {
-        case ActionTypes.SET_PRODUCTS:
+        case SET_PRODUCTS:
 
             return {...state,products:payload};
     
@@ -16,10 +16,10 @@ export const productReducer=(state = intialState,{type,payload})=>{
     }
 };
 
-    export const selectedProductReducer=(state=[],{type,payload})=>{
+    export const selectedProductReducer=(state={},{type,payload})=>{
        
         switch (type) {
-            case ActionTypes.GET_PRODUCT:
+            case GET_PRODUCT:
                 
                 return {...state,...payload};
         
@@ -29,12 +29,14 @@ export const productReducer=(state = intialState,{type,payload})=>{
 
 };
 
-export const deleteProductReducer=(state=[],{type,payload})=>{
-       
+export const deleteProductReducer=(state={},{type,payload})=>{
+    
     switch (type) {
-        case ActionTypes.REMOVE_SELECTED_PRODUCT:
-            
-            return state.filter((product) => product.id !== payload);
+        case REMOVE_SELECTED_PRODUCT:
+            console.log("refresh")
+            //state.filter((product) => product.id !== payload);
+        
+            return{...state,...payload};
     
         default:
             return state;
@@ -44,3 +46,4 @@ export const deleteProductReducer=(state=[],{type,payload})=>{
 
 
 
+*/

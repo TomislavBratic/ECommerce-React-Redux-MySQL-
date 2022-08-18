@@ -1,5 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles';
-import { deepPurple } from '@material-ui/core/colors';
+import { makeStyles } from '@mui/styles';
 
 
 export default makeStyles((theme) => ({
@@ -32,9 +31,22 @@ export default makeStyles((theme) => ({
     alignItems: 'space-between',
     color:'black',
   },
+  links2: {
+    color:'black',
+    borderRadius: 5,
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'right',
+    padding: '0px 10px',
+    margin:'0px 0px 0px 50px',
+    
+    
+  },
+  
   brandContainer: {
     display: 'flex',
     alignItems: 'center',
+    
   },
 
 }));

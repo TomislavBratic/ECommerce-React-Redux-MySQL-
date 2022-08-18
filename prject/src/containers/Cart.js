@@ -1,6 +1,8 @@
 import React,{useEffect} from 'react';
 import { useDispatch } from 'react-redux';
-import { Card, CardActions, CardContent,} from '@material-ui/core';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
 import makeStyles from '../Styles/cart&ProductStyles.js';
 import { deleteCart,getCart } from '../redux/actions/cartActions.js';
 import logo from "../additional_files/fakeshop.png";
@@ -14,7 +16,7 @@ import { styled } from '@mui/material/styles';
 
 
 
-const Cart = ({product,setRequestData}) => {
+const Cart = ({product}) => {
 
   const Img = styled('img')({
     margin: 'auto',
@@ -65,7 +67,7 @@ const Cart = ({product,setRequestData}) => {
                 </Typography>
               </Grid>
               <Grid item>
-              <Button size="small" color="primary" variant="contained"onClick={() => {setRequestData(new Date());dispatch(deleteCart(id))}}>
+              <Button size="small" color="primary" variant="contained"onClick={() => {dispatch(deleteCart(id))}}>
                Delete
               </Button>  
               </Grid>
